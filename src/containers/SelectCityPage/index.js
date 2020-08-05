@@ -1,5 +1,7 @@
 import React from "react"
+import { connect } from "react-redux"
 import styled from "styled-components"
+import { getCodeIbge } from "../../actions/city"
 
 class SelectCityPage extends React.Component {
     constructor(props){
@@ -12,6 +14,7 @@ class SelectCityPage extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault()
         console.log("certo")
+        this.props.getCodeIbge("Itapora")
     }
 
     render() {
@@ -25,6 +28,11 @@ class SelectCityPage extends React.Component {
         )
     }
 }
-export default SelectCityPage;
+
+const mapDispatchToProps = dispatch => ({
+    getCodeIbge: (city) => dispatch(getCodeIbge(city)),
+})
+
+export default connect(null, mapDispatchToProps)(SelectCityPage);
 
 
