@@ -1,7 +1,7 @@
 import React from "react";
 import { ConnectedRouter } from "connected-react-router";
 import { Switch, Route } from "react-router-dom";
-import App from "../../components/App"
+import SelectCityPage from "../../containers/SelectCityPage"
 
 export const routes = {
     root: "/",
@@ -11,7 +11,7 @@ export const routes = {
       return (
         <ConnectedRouter history={props.history}>
             <Switch>
-                <Route exact path={routes.root} component={App} />
+                <Route exact path={routes.root} component={SelectCityPage} />
             </Switch>
       </ConnectedRouter>
       )

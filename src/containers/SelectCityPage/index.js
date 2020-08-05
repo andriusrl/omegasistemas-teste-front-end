@@ -9,15 +9,22 @@ class SelectCityPage extends React.Component {
         }
     }
 
+    handleSubmit = (e) => {
+        e.preventDefault()
+        console.log("certo")
+    }
+
     render() {
-        
+
         return (
-            <div>
+            <form onSubmit={this.handleSubmit}>
                 <div>Saiba o valor e a quantidade de pessoas que receberam o auxílio emergêncial. Pesquise por uma cidade:</div>
                 <input type="text" />
-            </div>
+                <button type="submit">Pesquisar</button>
+            </form>
         )
     }
 }
+export default SelectCityPage;
 
 
