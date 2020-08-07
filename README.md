@@ -12,6 +12,7 @@
 ##### - Redux
 ##### - React-Router
 ##### - Material-UI
+##### - styled-components
 
 # Como iniciar o projeto
 
