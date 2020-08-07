@@ -1,5 +1,3 @@
-n
-
 ### Link de acesso
 ### http://omegasistemas-andrius.surge.sh
 
