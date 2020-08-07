@@ -34,6 +34,12 @@ class SelectCityPage extends React.Component {
         this.props.getCodeIbge(this.state.inputSearch)
     }
 
+    handleInputChange = (e) => {
+        this.setState({
+            inputSearch: e.target.value
+        })
+    }
+
     render() {
         const { classes } = this.props;
 
@@ -54,7 +60,7 @@ class SelectCityPage extends React.Component {
                     color="primary"
                     // endIcon={<Icon>send</Icon>}
                 >
-                    Pesquisar
+                    PESQUISAR CIDADE
                 </Button>
                 <FormHelperText>as requisições ao servidor do governo são limitadas</FormHelperText>
             </SelectCityPageWrapper>
