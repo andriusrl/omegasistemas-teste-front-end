@@ -8,6 +8,8 @@ import { createStore, applyMiddleware, compose } from "redux";
 import { generateReducers } from "./reducers";
 import { routerMiddleware } from "connected-react-router";
 import Router from "./containers/Router";
+import styled from "styled-components";
+import Headers from './components/header';
 // import { Store } from './store';
 
 export const history = createBrowserHistory();
@@ -21,10 +23,16 @@ const middlewares = [
 
 const store = createStore(generateReducers(history), compose(...middlewares));
 
+const Main = styled.div`
+  height: 100vh;
+`
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router history={history} />
+    <Main>
+      <Headers />
+      <Router history={history} />
+    </Main>
   </Provider>,
   document.getElementById('root')
 );
