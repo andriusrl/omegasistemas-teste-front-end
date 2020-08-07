@@ -29,9 +29,28 @@ class SelectCityPage extends React.Component {
         }
     }
 
+    removeAccents( inputString ) {
+        var string = inputString;
+          var mapAccentsHex 	= {
+              a : /[\xE0-\xE6]/g,
+              e : /[\xE8-\xEB]/g,
+              i : /[\xEC-\xEF]/g,
+              o : /[\xF2-\xF6]/g,
+              u : /[\xF9-\xFC]/g,
+              c : /\xE7/g,
+              n : /\xF1/g
+          };
+          for ( var caracter in mapAccentsHex ) {
+              var regularExpression = mapAccentsHex[caracter];
+              string = string.replace( regularExpression, caracter );
+          }
+          return string;
+      }
+
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.getCodeIbge(this.state.inputSearch)
+        console.log(this.removeAccents(this.state.inputSearch))
+        this.props.getCodeIbge(this.removeAccents(this.state.inputSearch))
     }
 
     handleInputChange = (e) => {
@@ -40,6 +59,7 @@ class SelectCityPage extends React.Component {
         })
     }
 
+    
     render() {
         const { classes } = this.props;
 
