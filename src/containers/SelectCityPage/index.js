@@ -54,7 +54,9 @@ class SelectCityPage extends React.Component {
                     Relatório do bolsa familia
                 </Typography>
                 <TextField id="outlined-basic" label="Insira o nome de uma cidade" variant="outlined" value={this.state.inputSearch} onChange={this.handleInputChange} />
-                <h3>De quantos meses pra cá?</h3>
+                <Typography variant="h5" gutterBottom>
+                    De quantos meses pra cá?
+                </Typography>
                 <RadioGroup row aria-label="gender" name="gender1" value={this.state.value} onChange={this.handleChange} >
                     <FormControlLabel value="1" control={<Radio />} label="1 mês" labelPlacement="top" />
                     <FormControlLabel value="2" control={<Radio />} label="2 meses" labelPlacement="top" />

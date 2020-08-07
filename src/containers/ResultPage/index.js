@@ -7,6 +7,10 @@ import { getCodeIbge } from "../../actions/cityIbge"
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import Typography from '@material-ui/core/Typography';
+import TableRow from '@material-ui/core/TableRow';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
 
 const SelectCityPageWrapper = styled.form`
     display: flex;
@@ -15,7 +19,7 @@ const SelectCityPageWrapper = styled.form`
 `
 
 class ResultPage extends React.Component {
-    constructor(props){
+    constructor(props) {
         super(props)
         this.state = {
         }
@@ -23,21 +27,45 @@ class ResultPage extends React.Component {
 
 
     render() {
-        const { classes } = this.props;
-        console.log("Quase láaaa")
         console.log(this.props.voucherData)
+        const averagePeople = () => {
+            let result = 0
+            for (let dia of this.props.voucherData) {
+                result += dia.quantidadeBeneficiados
+            }
+            result = result / this.props.voucherData.length
+            return result
+        }
+        const totalValue = () => {
+            let result = 0
+            for (let dia of this.props.voucherData) {
+                result = result + dia.valor
+            }
+            return result
+        }
         return (
             <SelectCityPageWrapper onSubmit={this.handleSubmit}>
                 <Typography variant="h5" gutterBottom>
                     Relatório do bolsa familia
                 </Typography>
-                
+                <Table aria-label="simple table">
+                    <TableBody>
+                        <TableRow>
+                            <TableCell>Média de pessoas: </TableCell>
+                            <TableCell align="right">{averagePeople()}</TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>Valor pago: </TableCell>
+                            <TableCell align="right">{totalValue()}</TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
             </SelectCityPageWrapper>
         )
     }
 }
 
-const mapStateToProps = state =>{
+const mapStateToProps = state => {
     return {
         voucherData: state.voucherData.voucherData
     }
