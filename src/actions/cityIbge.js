@@ -1,11 +1,7 @@
 import axios from 'axios';
+import { getVoucherFromIdCity } from './voucher';
 
 const baseUrlIbge = "https://servicodados.ibge.gov.br/api/v1"
-
-export const setVoucher = value => ({
-    type: 'SET_VOUCHER',
-    newValue: value
-});
 
 export const getCodeIbge = (city) => async (dispatch) => {
     try {
@@ -13,6 +9,7 @@ export const getCodeIbge = (city) => async (dispatch) => {
             `${baseUrlIbge}/localidades/municipios/${city}`
         )
         console.log(response.data)
+        dispatch(getVoucherFromIdCity(response.data.id))
     } catch (error) {
         alert("Por favor tente novamente")
     }
