@@ -15,7 +15,7 @@ export const setVoucher = value => {
 
 export const getVoucherFromIdCity = (id) => async (dispatch) => {
     try{
-        const promise2 = new Promise((resolve, reject)=>{
+        const promise1 = new Promise((resolve, reject)=>{
             const response = axios.get(
                 `${baseUrlVoucher}/bolsa-familia-por-municipio?mesAno=202006&codigoIbge=${id}&pagina=1`,
                 { headers: {
@@ -25,7 +25,7 @@ export const getVoucherFromIdCity = (id) => async (dispatch) => {
             resolve(response)
         })
 
-        const promise3 = new Promise((resolve, reject)=>{
+        const promise2 = new Promise((resolve, reject)=>{
             const response = axios.get(
                 `${baseUrlVoucher}/bolsa-familia-por-municipio?mesAno=202005&codigoIbge=${id}&pagina=1`,
                 { headers: {
@@ -35,7 +35,7 @@ export const getVoucherFromIdCity = (id) => async (dispatch) => {
             resolve(response)
         })
 
-        const promise4 = new Promise((resolve, reject)=>{
+        const promise3 = new Promise((resolve, reject)=>{
             const response = axios.get(
                 `${baseUrlVoucher}/bolsa-familia-por-municipio?mesAno=202004&codigoIbge=${id}&pagina=1`,
                 { headers: {
@@ -44,14 +44,13 @@ export const getVoucherFromIdCity = (id) => async (dispatch) => {
             )
             resolve(response)
         })
-
         dispatch(push(routes.loading))
 
-        Promise.all([promise2, promise3, promise4]).then((values=>{
+        Promise.all([promise1, promise2, promise3]).then((values=>{
             dispatch(setVoucher(values))
             dispatch(push(routes.result))
         }))
     } catch (error) {
-        alert('Por favor, tente novamente')
+        dispatch(push(routes.error))
     }
 }

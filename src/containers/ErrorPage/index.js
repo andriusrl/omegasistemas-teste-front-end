@@ -51,11 +51,19 @@ class ErrorPage extends React.Component {
 
     render() {
         return (
-            <LoagingWrapper onSubmit={this.handleSubmit}>
+            <LoagingWrapper>
                 <LoadingImage src={require("../../images/logo_bolsa_familia.svg")} />
                 <Typography variant="h6" gutterBottom>
                     Ocorreu um erro. Tente novamente em alguns minutos...
                 </Typography>
+                <Button
+                    type="submit"
+                    variant="contained"
+                    color="primary"
+                    onClick={this.props.setSelectCityPageRoute()}
+                >
+                    TENTAR NOVAMENTE
+                </Button>
             </LoagingWrapper>
         )
     }
@@ -68,6 +76,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
     setMenuStatus: (status) => dispatch(setMenuStatus(status)),
+    setSelectCityPageRoute: () => dispatch(push(routes.root))
   })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ErrorPage);
