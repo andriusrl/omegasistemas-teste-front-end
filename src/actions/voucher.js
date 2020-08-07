@@ -45,13 +45,12 @@ export const getVoucherFromIdCity = (id) => async (dispatch) => {
             resolve(response)
         })
 
+        dispatch(push(routes.loading))
+
         Promise.all([promise2, promise3, promise4]).then((values=>{
-            // console.log("entrou aqui")
-            // console.log(values)
             dispatch(setVoucher(values))
             dispatch(push(routes.result))
         }))
-        // console.log(response.data)
     } catch (error) {
         alert('Por favor, tente novamente')
     }

@@ -34,7 +34,7 @@ class ResultPage extends React.Component {
                 result += dia.quantidadeBeneficiados
             }
             result = result / this.props.voucherData.length
-            return result
+            return result.toFixed(0)
         }
         const totalValue = () => {
             let result = 0
@@ -45,8 +45,8 @@ class ResultPage extends React.Component {
         }
         return (
             <SelectCityPageWrapper onSubmit={this.handleSubmit}>
-                <Typography variant="h5" gutterBottom>
-                    Relatório do bolsa familia
+                <Typography variant="h6" gutterBottom>
+                    Relatório dos últimos 3 meses
                 </Typography>
                 <Table aria-label="simple table">
                     <TableBody>
