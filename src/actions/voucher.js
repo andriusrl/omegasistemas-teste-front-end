@@ -1,11 +1,17 @@
 import axios from "axios";
+import { push } from "connected-react-router";
+import { routes } from '../containers/Router'
 
 const baseUrlVoucher = "https://cors-anywhere.herokuapp.com/http://www.portaltransparencia.gov.br/api-de-dados"
 
-export const setVoucher = value => ({
-    type: 'SET_VOUCHER',
-    newValue: value
-});
+export const setVoucher = value => {
+    return {
+        type: 'SET_VOUCHER',
+        payload: {
+            value
+        }
+    }
+}
 
 export const getVoucherFromIdCity = (id) => async (dispatch) => {
     try{
@@ -40,8 +46,10 @@ export const getVoucherFromIdCity = (id) => async (dispatch) => {
         })
 
         Promise.all([promise2, promise3, promise4]).then((values=>{
-            console.log("entrou aqui")
-            console.log(values)
+            // console.log("entrou aqui")
+            // console.log(values)
+            dispatch(setVoucher(values))
+            dispatch(push(routes.result))
         }))
         // console.log(response.data)
     } catch (error) {
