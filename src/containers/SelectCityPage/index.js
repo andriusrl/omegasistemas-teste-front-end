@@ -12,6 +12,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Radio from '@material-ui/core/Radio';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+
 
 const SelectCityPageWrapper = styled.form`
     display: flex;
@@ -24,7 +26,6 @@ class SelectCityPage extends React.Component {
         super(props)
         this.state = {
             inputSearch: "",
-            value: ""
         }
     }
 
@@ -32,18 +33,6 @@ class SelectCityPage extends React.Component {
         e.preventDefault()
         this.props.getCodeIbge(this.state.inputSearch)
     }
-
-    handleInputChange = (e) => {
-        this.setState({
-            inputSearch: e.target.value
-        })
-    }
-
-    handleChange = (e) => {
-        this.setState({
-            value: e.target.value
-        })
-      };
 
     render() {
         const { classes } = this.props;
@@ -53,15 +42,12 @@ class SelectCityPage extends React.Component {
                 <Typography variant="h5" gutterBottom>
                     Relatório do bolsa familia
                 </Typography>
-                <TextField id="outlined-basic" label="Insira o nome de uma cidade" variant="outlined" value={this.state.inputSearch} onChange={this.handleInputChange} />
                 <Typography variant="h5" gutterBottom>
-                    De quantos meses pra cá?
+                    (Últimos 3 meses)
                 </Typography>
-                <RadioGroup row aria-label="gender" name="gender1" value={this.state.value} onChange={this.handleChange} >
-                    <FormControlLabel value="1" control={<Radio />} label="1 mês" labelPlacement="top" />
-                    <FormControlLabel value="2" control={<Radio />} label="2 meses" labelPlacement="top" />
-                    <FormControlLabel value="3" control={<Radio />} label="3 meses" labelPlacement="top" />
-                </RadioGroup>
+                <Box m={2} />
+                <TextField id="outlined-basic" label="Insira o nome de uma cidade" variant="outlined" value={this.state.inputSearch} onChange={this.handleInputChange} />
+                <Box m={1} />
                 <Button
                     type="submit"
                     variant="contained"
