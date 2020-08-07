@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { push } from "connected-react-router";
+import { routes } from '../containers/Router'
 import { getVoucherFromIdCity } from './voucher';
 
 const baseUrlIbge = "https://servicodados.ibge.gov.br/api/v1"
@@ -9,7 +11,10 @@ export const getCodeIbge = (city) => async (dispatch) => {
             `${baseUrlIbge}/localidades/municipios/${city}`
         )
         console.log(response.data)
-        dispatch(getVoucherFromIdCity(response.data.id))
+        response.data.id !== undefined ?
+            dispatch(getVoucherFromIdCity(response.data.id)) : 
+            alert("Cidade não encontrada, tente outra")
+        
     } catch (error) {
         alert("Por favor tente novamente")
     }

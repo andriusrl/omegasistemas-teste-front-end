@@ -12,6 +12,8 @@ import FormControl from '@material-ui/core/FormControl';
 import Radio from '@material-ui/core/Radio';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
+
 
 const SelectCityPageWrapper = styled.form`
     display: flex;
@@ -24,13 +26,31 @@ class SelectCityPage extends React.Component {
         super(props)
         this.state = {
             inputSearch: "",
-            value: ""
         }
     }
 
+    removeAccents( inputString ) {
+        var string = inputString;
+          var mapAccentsHex 	= {
+              a : /[\xE0-\xE6]/g,
+              e : /[\xE8-\xEB]/g,
+              i : /[\xEC-\xEF]/g,
+              o : /[\xF2-\xF6]/g,
+              u : /[\xF9-\xFC]/g,
+              c : /\xE7/g,
+              n : /\xF1/g
+          };
+          for ( var caracter in mapAccentsHex ) {
+              var regularExpression = mapAccentsHex[caracter];
+              string = string.replace( regularExpression, caracter );
+          }
+          return string;
+      }
+
     handleSubmit = (e) => {
         e.preventDefault()
-        this.props.getCodeIbge(this.state.inputSearch)
+        console.log(this.removeAccents(this.state.inputSearch))
+        this.props.getCodeIbge(this.removeAccents(this.state.inputSearch))
     }
 
     handleInputChange = (e) => {
@@ -39,12 +59,7 @@ class SelectCityPage extends React.Component {
         })
     }
 
-    handleChange = (e) => {
-        this.setState({
-            value: e.target.value
-        })
-      };
-
+    
     render() {
         const { classes } = this.props;
 
@@ -53,20 +68,19 @@ class SelectCityPage extends React.Component {
                 <Typography variant="h5" gutterBottom>
                     Relatório do bolsa familia
                 </Typography>
+                <Typography variant="h5" gutterBottom>
+                    (Últimos 3 meses)
+                </Typography>
+                <Box m={2} />
                 <TextField id="outlined-basic" label="Insira o nome de uma cidade" variant="outlined" value={this.state.inputSearch} onChange={this.handleInputChange} />
-                <h3>De quantos meses pra cá?</h3>
-                <RadioGroup row aria-label="gender" name="gender1" value={this.state.value} onChange={this.handleChange} >
-                    <FormControlLabel value="1" control={<Radio />} label="1 mês" labelPlacement="top" />
-                    <FormControlLabel value="2" control={<Radio />} label="2 meses" labelPlacement="top" />
-                    <FormControlLabel value="3" control={<Radio />} label="3 meses" labelPlacement="top" />
-                </RadioGroup>
+                <Box m={1} />
                 <Button
                     type="submit"
                     variant="contained"
                     color="primary"
                     // endIcon={<Icon>send</Icon>}
                 >
-                    Pesquisar
+                    PESQUISAR CIDADE
                 </Button>
                 <FormHelperText>as requisições ao servidor do governo são limitadas</FormHelperText>
             </SelectCityPageWrapper>
